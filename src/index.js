@@ -1,22 +1,23 @@
-let obj = {};
+import {observe} from "./observe";
 
-function defineReactive(data, key, val) {
-  Object.defineProperty(data, key, {
-    // 可枚举
-    enumerable: true,
-    // 可删除
-    configurable: true,
-    get() {
-      console.log('获取了'+ key +'属性');
-      return val
-    },
-    set(newValue) {
-      console.log('设置了'+ key +'属性');
-      if (val === newValue) return;
-      val = newValue
+let obj = {
+  a: {
+    m: {
+      n: 5
     }
-  });
-}
-defineReactive(obj, 'a', 10);
-defineReactive(obj, 'b', 20);
-console.log(obj.a + obj.b);
+  },
+  b: 10,
+  c: [1, 2, 3, 4]
+};
+
+observe(obj);
+obj.c.splice(2, 1, {name: 'array'});
+
+obj.c[2].name = 'lllll';
+// 此种方式没有调用数组方法，可以改变数组，但是不会触发响应式
+obj.c[2] = {like: 'ml'};
+console.log(obj);
+
+
+
+

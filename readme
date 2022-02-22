@@ -1,0 +1,22 @@
+## 给对象所有属性添加拦截器实现方法
+
+### 一、定义observe方法
+1、当参数不为对象时，return; 此时结束递归
+2、参数为对象，该方法先判断对象有没有__ob__属性，有则表示已经做过响应式处理，否则调用Observer类，将该参数传入
+
+### 二、定义Observer类
+1、给传入的对象通过def函数设置__ob__属性，值为Observer本身
+2、当传入的参数对象不为数组时，通过walk方法遍历对象的属性，给对象的每个属性通过defineReactive函数设置响应式
+   通过defineReactive设置响应式时 defineReactive中又调用了 observe 方法（observe 方法会通过传入的参数判断是否还会递归
+3、当传入的参数对象为数组时，调用Object.setPrototypeOf 方法，给该数组重新绑定原型对象，该原型对象使用def函数对数组的7个方法进行了响应式包装，
+   当调用这7个方法时，会触发响应式的拦截，在拦截函数中调用原生的数组方法，original.apply(this, arguments);
+4、当传入的参数对象为数组时，在Observer中调用observeArray 方法遍历数组，给数组每一项通过observe方法定义响应式
+
+### 三、定义defineReactive方法
+1、通过Object.defineProperty给对象绑定响应式
+   
+### 四、总结
+1、首先调用observe方法判断参数是不是对象，是则跳出递归，不是则调用class Observer
+2、在Observer中调用 defineReactive 方法为对象添加响应式
+3、在defineReactive再次调用observe方法，将传入defineReactive中的value 传递给 observe方法形成循环调用，给所有的属性添加响应式
+
