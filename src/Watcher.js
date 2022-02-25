@@ -1,3 +1,4 @@
+import Dep from "./Dep";
 let uid = 0;
 export default class Watcher {
   constructor(target, expression, callback) {
@@ -10,7 +11,7 @@ export default class Watcher {
   }
 
   update() {
-
+    this.run();
   }
 
   get() {
@@ -19,11 +20,12 @@ export default class Watcher {
     const obj = this.target;
     let value;
 
-    // 只要能找，就一直找
+    // 只要能找，就一直找, 最后
     try {
       value = this.getter(obj);
     } finally {
       Dep.target = null;
+      console.log(Dep.target, '========Dep.target==========');
     }
     return value;
   }
