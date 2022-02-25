@@ -31,6 +31,8 @@ methodsNeedChange.forEach(methodName => {
       ob.observeArray(inserted)
     }
     console.log('包装好的数组的方法被调用了');
+    // 调用数组方法时也要调用notify通知更新
+    ob.dep.notify();
     // 返回返回值，当数组的方法有返回值的时候需要返回
     return original.apply(this, arguments);
   }, false)

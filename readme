@@ -14,9 +14,18 @@
 
 ### 三、定义defineReactive方法
 1、通过Object.defineProperty给对象绑定响应式
+
+
+### 四、依赖收集
+1、把依赖收集的代码封装成一个Dep类，它专门用来管理依赖，每个Observer的实例成员中都有一个Dep的实例
+2、Watcher是一个中介，数据发生变化时通过Watcher中转，通知组件
+3、Vue2.0中更新最小粒子是组件
+4、在getter中收集依赖Dep
+4、在setter中通知依赖Dep,Dep在通知Watcher,Watcher通知组件更新
    
-### 四、总结
+### 总结
 1、首先调用observe方法判断参数是不是对象，是则跳出递归，不是则调用class Observer
 2、在Observer中调用 defineReactive 方法为对象添加响应式
 3、在defineReactive再次调用observe方法，将传入defineReactive中的value 传递给 observe方法形成循环调用，给所有的属性添加响应式
+
 
