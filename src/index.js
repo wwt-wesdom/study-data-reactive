@@ -23,7 +23,7 @@ new Watcher(obj, 'a.m.n', (val) => {
   console.log('😃😃😃😃🎉🎉🎉❤❤', val);
 });
 
-// obj.a.m.n = 30;
+obj.a.m.n = 30;
 
 console.log(obj);
 

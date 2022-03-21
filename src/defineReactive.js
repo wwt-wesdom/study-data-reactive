@@ -16,7 +16,6 @@ export default function defineReactive(data, key, val) {
       // console.log('获取了' + key + '属性');
       // 收集依赖
       // 如果现在处于依赖收集阶段
-      console.log(Dep.target, '========Dep.target.define==========');
       if (Dep.target) {
         dep.depend();
         if (childOb) {
@@ -31,6 +30,7 @@ export default function defineReactive(data, key, val) {
       if (val === newValue) return;
       val = newValue;
       childOb = observe(newValue);
+      console.log(dep.subs);
       dep.notify();
     }
   });
