@@ -6,6 +6,7 @@ export default function defineReactive(data, key, val) {
   if (arguments.length === 2) {
     val = data[key];
   }
+  // 重点，如果val是对象则对val里的key进行响应式处理，直到val内部的全都处理完成
   let childOb = observe(val);
   Object.defineProperty(data, key, {
     // 可枚举
@@ -30,7 +31,6 @@ export default function defineReactive(data, key, val) {
       if (val === newValue) return;
       val = newValue;
       childOb = observe(newValue);
-      console.log(dep.subs);
       dep.notify();
     }
   });

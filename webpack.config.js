@@ -11,6 +11,6 @@ module.exports = {
       directory: path.join(__dirname, 'www'),
     },
     compress: true,
-    port: 3703,
+    port: 3705,
   }
 };

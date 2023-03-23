@@ -6,7 +6,7 @@ import Dep from "./Dep";
 
 export default class Observer {
   constructor(value) {
-    console.log('Observer构造器触发');
+    // console.log('Observer构造器触发');
     this.dep = new Dep();
     def(value, '__ob__', this, false);
     if (Array.isArray(value)) {

@@ -19,14 +19,13 @@ export default class Watcher {
     Dep.target = this;
     const obj = this.target;
     let value;
-
     // 只要能找，就一直找, 最后
     try {
       value = this.getter(obj);
     } finally {
       Dep.target = null;
-      console.log(Dep.target, '========Dep.target==========');
     }
+
     return value;
   }
 

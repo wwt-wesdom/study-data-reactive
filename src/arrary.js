@@ -4,6 +4,7 @@ const methodsNeedChange = ['push', 'pop', 'shift', 'unshift', 'splice', 'sort', 
 const arrayPrototype = Array.prototype;
 
 // o.__prototype__ =  arrayMethods; arrayMethods.__prototype__ = arrayPrototype
+// 已数组原型对象为原型创建新对象
 export const arrayMethods = Object.create(arrayPrototype);
 console.log(arrayMethods);
 

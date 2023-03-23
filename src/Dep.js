@@ -2,7 +2,7 @@
 let uid = 0;
 export default class Dep {
   constructor() {
-    console.log('我是Dep类的构造器');
+    // console.log('我是Dep类的构造器');
     // 用数组存储自己的订阅者 subscribes/订阅者
     // 数组中存放的是Watcher的实例
     this.id = uid ++;
